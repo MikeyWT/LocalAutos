@@ -15,7 +15,7 @@ namespace LocalAutos.Models
                 serviceProvider.GetRequiredService<DbContextOptions<AutoContext>>())
 )
             {
-                // Look for any Automobiles.
+                // Look for any Users.
                 if (context.UserNew.Any())
                 {
                     return; // DB has been seeded

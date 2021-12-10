@@ -17,7 +17,7 @@ public class AutoModels : PageModel
         private readonly AutoContext _context;     //This replaces .db
         private readonly ILogger<AutoModels> _logger;
 
-        public List<Automobiles> AutoTwo {get; set;}     //This will Create a list that will give access to information stored in the Movie Automobiles class
+        public List<Automobiles> AutoTwo {get; set;}     //This will Create a list that will give access to information stored in the Automobiles class
 
         public AutoModels(AutoContext context, ILogger<AutoModels> logger)
         {
