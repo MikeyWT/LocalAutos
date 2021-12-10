@@ -1,0 +1,54 @@
+@page
+@model LocalAutos.Pages.AutomobilesAll.AutoModels
+<h1>Index</h1>
+<br>
+
+<a asp-page="./CreateAuto">Create New</a>   <!--This Create New anchor will direct the user to the Create page -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+                @{
+                    var firstSort = "first_asc";
+                    if (Model.CurrentSort == "first_asc")
+                    {
+                        firstSort = "first_desc";
+                    }
+                }
+               <a asp-page="./Index" asp-route-CurrentSort=@firstSort> @Html.DisplayNameFor(model => model.AutoTwo[0].Make)</a>
+            </th>
+      <th scope="col">@Html.DisplayNameFor(model => model.AutoTwo[0].Model)</th>   <!-- This will seperate the columns of the table by Make, Model, Year of Automobile, price and if the owner is Selling or Trading -->
+      <th scope="col">@Html.DisplayNameFor(model => model.AutoTwo[0].YearMade)</th>
+      <th scope="col">@Html.DisplayNameFor(model => model.AutoTwo[0].Price)</th>
+      <th scope="col">@Html.DisplayNameFor(model => model.AutoTwo[0].SaleTrade)</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var item in Model.AutoTwo){
+    <tr>
+      <td>@Html.DisplayFor(modelItem => item.Make)</td>
+      <td>@Html.DisplayFor(modelItem => item.Model)</td>      
+      <td>@Html.DisplayFor(modelItem => item.YearMade)</td>
+      <td>@Html.DisplayFor(modelItem => item.Price)</td>
+      <td>@Html.DisplayFor(modelItem => item.SaleTrade)</td>
+    </tr>
+      }     <!--The above foreach loop will cycle through the entity class and return all appropriate attributes that have been coded to return from the database. -->
+  </tbody>
+      
+</table>
+@{
+    var prevDisabled="";
+    if(Model.PageNum <= 1)
+    {
+        prevDisabled = "disabled";
+    }
+}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item @prevDisabled"><a class="page-link" asp-page="./AutomobilesNew" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" asp-page="./AutomobilesNew" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+  </ul>
+</nav>
